@@ -1,8 +1,8 @@
 class Transcription < Formula
   desc "Trascrizione di audio in italiano con whisper.cpp (large-v3-turbo, Metal)"
   homepage "https://github.com/daniele-russano/homebrew-tap"
-  url "https://github.com/daniele-russano/homebrew-tap/releases/download/transcription-v0.1.0/transcription-0.1.0.tar.gz"
-  sha256 "1a0e6f2acf63157d23d3c6b326007c6dbddc551dd0f2b95a3a235c03c32639a3"
+  url "https://github.com/daniele-russano/homebrew-tap/releases/download/transcription-v0.1.2/transcription-0.1.2.tar.gz"
+  sha256 "114582a6458dc58c79666e0b59c0af6902f3303600a7f9855fc34127a6aa1fc8"
 
   depends_on arch: :arm64
   depends_on macos: :sonoma
@@ -15,7 +15,8 @@ class Transcription < Formula
   # Wheel ufficiale, con le librerie FFmpeg incluse. Le formule di solito
   # compilano i pacchetti Python dai sorgenti (std_pip_args forza
   # --no-binary=:all:), ma PyAV andrebbe compilato contro l'ffmpeg di
-  # Homebrew, di cui non garantisce il supporto per ogni versione.
+  # Homebrew, di cui non garantisce il supporto per ogni versione. URL e hash
+  # vengono da uv.lock: è la stessa versione usata nel checkout.
   resource "av" do
     url "https://files.pythonhosted.org/packages/3f/c9/37a619297492256b77d5ed906e7d8166c10a26ed251dccf1ae03ab19bff6/av-18.1.0-cp311-abi3-macosx_14_0_arm64.whl"
     sha256 "b30a4e8d934558e19602b68998a4d9ac9f250fa0dacef216f7e8e40153b13316"
