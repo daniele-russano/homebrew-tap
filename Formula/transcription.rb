@@ -1,13 +1,18 @@
 class Transcription < Formula
   desc "Trascrizione di audio in italiano con whisper.cpp (large-v3-turbo, Metal)"
   homepage "https://github.com/daniele-russano/homebrew-tap"
-  url "https://github.com/daniele-russano/homebrew-tap/releases/download/transcription-v0.1.3/transcription-0.1.3.tar.gz"
-  sha256 "043800e990ae9e4cf3c0d7af6f43e9a50f5191a0cc5b6330f0bd9cf841d24fb9"
+  url "https://github.com/daniele-russano/homebrew-tap/releases/download/transcription-v0.1.4/transcription-0.1.4.tar.gz"
+  sha256 "58f0c2a8a08c566858d32f3b2d22953ef815179e146a2c8e82f43f2480b51dfe"
 
   depends_on arch: :arm64
   depends_on macos: :sonoma
   depends_on "python@3.14"
-  depends_on "whisper.cpp"
+
+  # whisper-cli non viene dalla formula whisper.cpp di Homebrew, che esiste in
+  # una sola versione e cambierebbe sotto i piedi a ogni brew upgrade: è nel
+  # tarball, compilato dal workflow di release con scripts/build-whisper-cli.sh
+  # dallo stesso tag del checkout (WHISPER_CPP_VERSION). Statico, dipende solo
+  # da librerie di sistema.
 
   # Vedi install: gli ID @rpath/... delle dylib di PyAV vanno lasciati così.
   preserve_rpath
@@ -42,12 +47,13 @@ class Transcription < Formula
       system "codesign", "--force", "--sign", "-", dylib
     end
 
-    libexec.install "transcription.py", "audio_utils.py"
+    libexec.install "transcription.py", "audio_utils.py", "whisper-cli"
+    (pkgshare/"licenses").install "whisper.cpp-LICENSE"
 
     (bin/"transcription").write <<~SH
       #!/bin/bash
       export TRANSCRIPTION_INSTALLED=1
-      export WHISPER_CPP_BIN="#{formula_opt_bin("whisper.cpp")}/whisper-cli"
+      export WHISPER_CPP_BIN="#{libexec}/whisper-cli"
       exec "#{libexec}/bin/python" "#{libexec}/transcription.py" "$@"
     SH
   end
@@ -66,5 +72,6 @@ class Transcription < Formula
   test do
     assert_match "file audio da trascrivere", shell_output("#{bin}/transcription --help")
     system libexec/"bin/python", "-c", "import av"
+    assert_match "--vad-model", shell_output("#{libexec}/whisper-cli --help 2>&1")
   end
 end
