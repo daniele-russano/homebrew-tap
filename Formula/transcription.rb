@@ -1,8 +1,8 @@
 class Transcription < Formula
   desc "Trascrizione di audio in italiano con whisper.cpp (large-v3-turbo, Metal)"
   homepage "https://github.com/daniele-russano/homebrew-tap"
-  url "https://github.com/daniele-russano/homebrew-tap/releases/download/transcription-v0.1.5/transcription-0.1.5.tar.gz"
-  sha256 "854eb3d69b2b99410c01515071b4d811c79428898e8bbd6f7a52f2d23f83f712"
+  url "https://github.com/daniele-russano/homebrew-tap/releases/download/transcription-v0.1.6/transcription-0.1.6.tar.gz"
+  sha256 "606d7dffe9921fa46920b4cf505535fab5e0beb5f8aaa55dbc0a78d8d1a4e3a9"
 
   depends_on arch: :arm64
   depends_on macos: :sonoma
