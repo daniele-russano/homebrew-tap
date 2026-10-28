@@ -1,15 +1,15 @@
 class Ccsm < Formula
   desc "Claude Code Session Manager: elenca, cerca e cestina le sessioni locali"
   homepage "https://github.com/daniele-russano/homebrew-tap"
-  version "0.1.9"
+  version "0.1.10"
 
   on_arm do
-    url "https://github.com/daniele-russano/homebrew-tap/releases/download/v0.1.9/ccsm-darwin-arm64.tar.gz"
-    sha256 "5204e6101d69f9ff79888f3b3b16db30f27c9e4ab8b934c231748ce3a194ea90"
+    url "https://github.com/daniele-russano/homebrew-tap/releases/download/v0.1.10/ccsm-darwin-arm64.tar.gz"
+    sha256 "3ebe43d2487feeb5eb09dcec6d11530ab0c187bc5fb607c8a2595d70e0776dc9"
   end
   on_intel do
-    url "https://github.com/daniele-russano/homebrew-tap/releases/download/v0.1.9/ccsm-darwin-x64.tar.gz"
-    sha256 "ffb472470a64cb458fb325ddb6bbe0bf77fb28cdf3a3a937af5fb9df74bacc20"
+    url "https://github.com/daniele-russano/homebrew-tap/releases/download/v0.1.10/ccsm-darwin-x64.tar.gz"
+    sha256 "b62ecf94b74c8c3ea51d1ed769d78147c0f0fe57103d07d51159666aab322b3e"
   end
 
   depends_on :macos
